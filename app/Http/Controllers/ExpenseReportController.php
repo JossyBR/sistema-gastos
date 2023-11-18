@@ -52,7 +52,10 @@ class ExpenseReportController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $report = ExpenseReport::find($id);
+        return view('expenseReport.edit', [
+            'report' => $report
+        ]);
     }
 
     /**
@@ -60,7 +63,11 @@ class ExpenseReportController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $report = ExpenseReport::find($id);
+        $Report->title = $request->get(key:'title');
+        $report->save();
+
+        return redirect(to: '/expense_reports');
     }
 
     /**
