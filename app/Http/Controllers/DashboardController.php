@@ -12,9 +12,9 @@ class DashboardController extends Controller
     //     ]);
     // }
 
-    // public function index() {
-    //     return view('test', [
-    //         'title' => 'Curso Laravel en Platzi!!!'
-    //     ]);
-    // }
+    public function index() {
+        return view('test', [
+            'title' => 'Curso Laravel en Platzi!!!'
+        ]);
+    }
 }
