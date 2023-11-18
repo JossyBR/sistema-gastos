@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function (){
+//     return view(view:'welcome');
+// });
+
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
+
+// Route::get('/', 'HomeController@index');
+
+// Route::get('/dashboard', 'DashboardController');
+
+// Route::get('/', [HomeController::class, 'index']);
+
+// Route::get('/dashboard', [DashboardController::class, 'index']);
+
+// Route::resource('/expense_reports', 'ExpenseReportController');
