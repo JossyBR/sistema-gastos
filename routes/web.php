@@ -21,6 +21,10 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
 
+use App\Http\Controllers\ExpenseReportController;
+Route::resource('/expense_reports', ExpenseReportController::class);
+
+
 // Route::resource('/expense_reports', \App\Http\Controllers\ExpenseReportController::class, 'index');
 
 // Route::get('/', 'HomeController@index');
