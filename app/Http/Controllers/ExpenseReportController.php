@@ -22,7 +22,7 @@ class ExpenseReportController extends Controller
      */
     public function create()
     {
-        //
+        return view(view: 'expenseReport.create');
     }
 
     /**
@@ -30,7 +30,13 @@ class ExpenseReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // creando nuevo reporte
+        $report = new ExpenseReport();
+        $report->title = $request->get(key: 'title');
+        $report->save();
+
+        // Redireccionar
+        return redirect(to: '/expense_reports');
     }
 
     /**
