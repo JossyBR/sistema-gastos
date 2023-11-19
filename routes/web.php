@@ -25,6 +25,9 @@ use App\Http\Controllers\ExpenseReportController;
 Route::resource('/expense_reports', ExpenseReportController::class);
 
 
+Route::get('/expense_reports/{id}/confirmDelete',[ExpenseReportController::class, 'confirmDelete']);
+
+
 // Route::resource('/expense_reports', \App\Http\Controllers\ExpenseReportController::class, 'index');
 
 // Route::get('/', 'HomeController@index');

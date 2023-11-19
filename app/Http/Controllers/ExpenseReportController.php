@@ -52,11 +52,16 @@ class ExpenseReportController extends Controller
      */
     public function edit(string $id)
     {
-        $report = ExpenseReport::find($id);
+        $report = ExpenseReport::findOfFaild($id);
         return view('expenseReport.edit', [
             'report' => $report
         ]);
+        
+
+    //     $report = ExpenseReport::find($id);
+    // return view('tu.vista.edit', compact('report'));
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -64,7 +69,7 @@ class ExpenseReportController extends Controller
     public function update(Request $request, string $id)
     {
         $report = ExpenseReport::find($id);
-        $Report->title = $request->get(key:'title');
+        $report->title = $request->get(key:'title');
         $report->save();
 
         return redirect(to: '/expense_reports');
@@ -75,6 +80,18 @@ class ExpenseReportController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $report = ExpenseReport::find($id);
+        $report->delete();
+
+        return redirect(to: '/expense_reports');
+    }
+
+    public function confirmDelete($id)
+    {
+        // dd(var: 'confirmDelete' . $id);
+        $report = ExpenseReport::find($id);
+        return view('expenseReport.confirmDelete', [
+            'report' => $report
+        ]);
     }
 }
