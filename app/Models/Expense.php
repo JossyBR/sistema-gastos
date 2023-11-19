@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ExpenseReport extends Model
+class Expense extends Model
 {
     use HasFactory;
 
-    public function expenses() {
-        return $this->hasMany(related: Expense::class);
+    public function expenseReport(){
+        return $this->belongsTo(related: ExpenseReport::class);
     }
-}
+ }

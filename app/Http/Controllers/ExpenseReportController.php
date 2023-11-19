@@ -7,6 +7,10 @@ use App\Models\ExpenseReport;
 
 class ExpenseReportController extends Controller
 {
+    public function __construct(){
+        $this->middleware(middleware: 'auth');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -48,9 +52,15 @@ class ExpenseReportController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(ExpenseReport $expenseReport)
     {
-        //
+        return view('expenseReport.show', [
+                'report' => $expenseReport
+            ]);
+        // $report = ExpenseReport::findOrFail($id);
+        // return view('expenseReport.show', [
+        //     'report' => $report
+        // ]);
     }
 
     /**
@@ -58,7 +68,7 @@ class ExpenseReportController extends Controller
      */
     public function edit(string $id)
     {
-        $report = ExpenseReport::findOfFaild($id);
+        $report = ExpenseReport::findOrFail($id);
         return view('expenseReport.edit', [
             'report' => $report
         ]);
@@ -100,4 +110,21 @@ class ExpenseReportController extends Controller
             'report' => $report
         ]);
     }
+
+    public function confirmSendMail($id){
+        $report = ExpenseReport::find($id);
+        return view('expenseReport.confirmSendMail', [
+            'report' => $report
+        ]);
+    }
+
+    public function sendMail(Request $request, $id) {
+        $report = ExpenseReport::find($id);
+        Mail::to($request->get(key: 'email'))->send(new SummaryReport($report));
+
+        return redirect(to: '/expense_reports/'. $id);
+        // return $report;
+
+    }
+
 }
