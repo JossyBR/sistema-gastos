@@ -30,6 +30,12 @@ class ExpenseReportController extends Controller
      */
     public function store(Request $request)
     {
+        $validData = $request->validate([
+            'title' => 'required|min:3'
+        ]);
+
+        // dd($validData);
+
         // creando nuevo reporte
         $report = new ExpenseReport();
         $report->title = $request->get(key: 'title');
